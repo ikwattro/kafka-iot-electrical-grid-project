@@ -3,6 +3,7 @@ package com.ikwattro.egrid.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ikwattro.egrid.DeviceEvent;
 import com.ikwattro.egrid.domain.GeneratedDeviceEvent;
+import com.ikwattro.egrid.service.EventsProducer;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,11 @@ import java.util.stream.Stream;
 public class EventEndpointController {
 
     private static final ObjectMapper OM = new ObjectMapper();
+    private final EventsProducer eventsProducer;
+
+    public EventEndpointController(EventsProducer eventsProducer) {
+        this.eventsProducer = eventsProducer;
+    }
 
     @PostMapping("/events/device/{id}")
     public void deviceEventEndpoint(@PathVariable String id, @RequestBody String s) {
@@ -22,7 +28,7 @@ public class EventEndpointController {
             try {
                 GeneratedDeviceEvent ev = OM.readValue(l, GeneratedDeviceEvent.class);
                 DeviceEvent deviceEvent = new DeviceEvent(ev.getDevice_id(), ev.getCharging_source(), ev.getCurrent_capacity());
-                System.out.println(deviceEvent.getChargingSource());
+                eventsProducer.sendDeviceEvent(deviceEvent);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
