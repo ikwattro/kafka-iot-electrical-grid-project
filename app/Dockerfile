@@ -7,6 +7,6 @@ ADD target/electrical-grid*.jar /opt/app.jar
 
 USER 1001
 
-EXPOSE 8080
+EXPOSE 8900
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/opt/app.jar"]

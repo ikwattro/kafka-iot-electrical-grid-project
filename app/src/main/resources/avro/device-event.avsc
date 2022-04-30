@@ -1,0 +1,21 @@
+{
+  "namespace": "com.ikwattro.egrid",
+  "type": "record",
+  "name": "DeviceEvent",
+  "fields": [
+    {
+      "name": "device_id",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "charging_source",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "current_capacity",
+      "type": "int"
+    }
+  ]
+}

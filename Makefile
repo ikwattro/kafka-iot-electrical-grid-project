@@ -3,7 +3,12 @@ VERSION=1.0.0
 
 .PHONY: package build
 
-package: maven-package
+app-run: run-app-spring
+
+run-app-spring:
+	cd app; mvn spring-boot:run
+
+app-package: maven-package
 
 maven-package:
 	cd app; mvn clean package -DskipTests=true
