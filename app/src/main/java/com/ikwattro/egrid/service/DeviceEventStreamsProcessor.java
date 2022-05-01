@@ -18,6 +18,12 @@ public class DeviceEventStreamsProcessor {
 
     private static final Serde<String> STRING_SERDE = Serdes.String();
 
+    private final DeviceChargingRepositoryService repositoryService;
+
+    public DeviceEventStreamsProcessor(DeviceChargingRepositoryService repositoryService) {
+        this.repositoryService = repositoryService;
+    }
+
     @Autowired
     void buildPipeline(StreamsBuilder streamsBuilder) {
         final Serde<DeviceEvent> deviceEventSerde = new SpecificAvroSerde<>();
@@ -30,7 +36,10 @@ public class DeviceEventStreamsProcessor {
         );
         KStream<String, DeviceEvent> messageStream = streamsBuilder.stream("device-events", Consumed.with(STRING_SERDE, deviceEventSerde));
 
-        messageStream.foreach((k, m) -> System.out.println(m));
+        messageStream.foreach((k, m) -> {
+            System.out.println(k);
+            repositoryService.storeDeviceChargingState(m);
+        });
     }
 
 }
