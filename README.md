@@ -1,4 +1,4 @@
-# Electrical Workshop 
+# Managing a Distributed Electrical Grid in Real Time with Kafka
 
 Kafka, Kafka Streams, IOT
 

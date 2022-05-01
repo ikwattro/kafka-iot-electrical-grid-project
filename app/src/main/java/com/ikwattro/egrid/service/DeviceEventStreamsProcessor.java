@@ -18,9 +18,9 @@ public class DeviceEventStreamsProcessor {
 
     private static final Serde<String> STRING_SERDE = Serdes.String();
 
-    private final DeviceChargingRepositoryService repositoryService;
+    private final DeviceChargingStatePersistenceService repositoryService;
 
-    public DeviceEventStreamsProcessor(DeviceChargingRepositoryService repositoryService) {
+    public DeviceEventStreamsProcessor(DeviceChargingStatePersistenceService repositoryService) {
         this.repositoryService = repositoryService;
     }
 

@@ -10,11 +10,11 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class DeviceChargingRepositoryService {
+public class DeviceChargingStatePersistenceService {
 
     private final DeviceChargingStateRepository deviceChargingStateRepository;
 
-    public DeviceChargingRepositoryService(DeviceChargingStateRepository deviceChargingStateRepository) {
+    public DeviceChargingStatePersistenceService(DeviceChargingStateRepository deviceChargingStateRepository) {
         this.deviceChargingStateRepository = deviceChargingStateRepository;
     }
 
