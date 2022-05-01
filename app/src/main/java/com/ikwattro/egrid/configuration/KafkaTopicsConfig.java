@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KafkaTopicsConfig {
 
-    private final int defaultPartitionsNumber = 1;
-    private final short defaultReplicationFactor = 1;
+    private static final int defaultPartitionsNumber = 1;
+    private static final short defaultReplicationFactor = 1;
 
     @Bean
     NewTopic deviceEventsTopic() {
