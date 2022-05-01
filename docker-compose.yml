@@ -1,5 +1,16 @@
 version: '3.7'
+volumes:
+  egrid_postgres_data:
 services:
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: egrid
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - "egrid_postgres_data:/var/lib/postgresql/data"
   zookeeper:
     image: confluentinc/cp-zookeeper:${CONFLUENT_KAFKA_VERSION}
     hostname: zookeeper

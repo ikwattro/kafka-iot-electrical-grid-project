@@ -6,7 +6,7 @@ VERSION=1.0.0
 app-run: run-app-spring
 
 run-app-spring:
-	cd app; mvn spring-boot:run
+	docker-compose up -d postgres; cd app; mvn spring-boot:run
 
 app-package: maven-package
 
